@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Filter</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <header class="header">
+          <div class="logo-box">
+            <a href="#" class="logo__link">
+              <img src="img/shop.svg" class="logo" alt="logo" />
+            </a>
+          </div>
+          <form action="#" class="form">
+            <div class="form__group">
+              <input
+                type="text"
+                class="form__input"
+                placeholder="Search Products, categories..."
+              />
+              <button class="form__btn">Search</button>
+            </div>
+          </form>
+        </header>
+        <div class="filter">
+          <button class="filter__btn" data-category="all">All</button>
+          <button class="filter__btn" data-category="clothes">Clothes</button>
+          <button class="filter__btn" data-category="watches">Watches</button>
+          <button class="filter__btn" data-category="computers">
+            Computers
+          </button>
+          <button class="filter__btn" data-category="shoes">Shoes</button>
+        </div>
+      </div>
+    </div>
+    <div class="app">
+      <div class="container">
+        <div class="product__list">
+          <!-- <div class="product__item">
+            <div class="product__card">
+              <div class="product__image-box">
+                <img
+                  src="./img/computer-5.jpg"
+                  alt="product image"
+                  class="product__image"
+                />
+              </div>
+              <div class="product__detail">
+                <p class="product__name">Apple Laptop, HD Desktop computer</p>
+                <p class="product__price">$30000</p>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
