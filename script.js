@@ -1,67 +1,3 @@
-// const products = [
-//   { name: "Crad Hoodie", quantity: 3, category: "clothing" },
-//   { name: "Crad Hoodie", quantity: 3, category: "clothing" },
-//   { name: "Crad Hoodie", quantity: 3, category: "clothing" },
-//   { name: "Crad Hoodie", quantity: 3, category: "clothing" },
-//   { name: "Crad Hoodie", quantity: 3, category: "hoodie" },
-//   { name: "Crad Hoodie", quantity: 3, category: "clothing" },
-//   { name: "Jockin Hoodie", quantity: 3, category: "clothing" },
-//   { name: "Food Crad Hoodie", quantity: 3, category: "clothing" },
-//   { name: "Hoodie", quantity: 3, category: "clothing" },
-// ];
-
-// console.log(products.length);
-
-// const item = products.filter((item, i) => {
-//   return item.name.includes("Crad");
-// });
-
-// console.log(item);
-
-// const clothing = products.filter((item, i) => {
-//   return item.category.includes("clothing");
-// });
-
-// console.log(clothing);
-
-// const form = document.querySelector(".form");
-// const input = document.querySelector(".product__input");
-// const filter = function (value) {
-//   const newText = value.toLowerCase();
-
-//   const list = products.forEach((item) => {
-//     const itemName = item.name.toLowerCase();
-//     if (itemName.includes(newText)) {
-//       return item;
-//     } else {
-//       console.log(`${newText} doesn't exist `);
-//     }
-//   });
-
-//   console.log(list);
-// };
-
-// form.addEventListener("submit", function (e) {
-//   e.preventDefault();
-//   const text = input.value.trim();
-
-//   if (text !== "") filter(text);
-//   else {
-//     alert("Please add a string");
-//     return;
-//   }
-// });
-
-//1) Listen to form event and validate data ---- done
-
-//2) Pass the string gotten from the search query into a filter action and convert the string to lowercase
-
-//3) test the value passed against a tolowercase product name
-
-//4) Render items on the ui
-
-//5) Hide unrelated items
-
 const form = document.querySelector(".form");
 const input = document.querySelector(".form__input");
 const productList = document.querySelector(".product__list");
@@ -159,7 +95,7 @@ const renderProducts = function (productsArr) {
 
 const filterProducts = function (text, productsArr) {
   const item = productsArr.filter(function (product) {
-    return product.name.toLowerCase().includes(text);
+    return product.name.toLowerCase().includes(text.toLowerCase());
   });
   renderProducts(item);
 };
