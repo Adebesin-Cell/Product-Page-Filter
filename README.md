@@ -1,2 +1,5 @@
 # Product-Page-Filter
-E-Commerce product page filter and search. Items to search for are: "Watches", "Hoodie", "Sneakers" etc.
+
+# E-Commerce product page filter and search.
+
+# Items available: "Watches", "Hoodie", "Sneakers" , "Computers" , "Laptops" .
