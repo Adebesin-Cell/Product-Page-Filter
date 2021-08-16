@@ -2,6 +2,7 @@ import * as model from "./model";
 import ProductView from "./views/productView";
 import filterView from "./views/filterView";
 import categoryView from "./views/categoryView";
+import paginationView from "./views/paginationView";
 
 const controlProductView = function () {
   ProductView.render(model.data.search.products);
@@ -16,7 +17,6 @@ const controlFilter = function (data) {
 };
 
 const controlCategoryFilter = function (category) {
-  console.log(category);
   let items;
   if (category === "all") {
     ProductView.render(model.data.search.products);
@@ -50,12 +50,28 @@ const controlCategoryFilter = function (category) {
   }
 };
 
+const controlPagination = function (gotoPage) {
+  console.log(model.renderPageResults(gotoPage));
+  ProductView.render(model.renderPageResults(gotoPage));
+
+  paginationView.render(model.data.search);
+};
+
 const init = function () {
   controlProductView();
+  controlPagination();
+
+  paginationView.render(model.data.search);
 
   filterView.addFilterHandler(controlFilter);
-
   categoryView.addCategoryHandler(controlCategoryFilter);
+  paginationView.addPaginationHandler(controlPagination);
 };
 
 init();
+
+const getProducts = function () {
+  return model.data.search.products.length;
+};
+
+console.log(getProducts());

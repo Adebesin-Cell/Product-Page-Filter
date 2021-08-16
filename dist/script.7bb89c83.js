@@ -123,7 +123,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.renderPageResults = exports.filterProducts = exports.data = void 0;
+exports.renderPageResults = exports.data = void 0;
 var data = {
   search: {
     page: 1,
@@ -193,15 +193,12 @@ var data = {
 };
 exports.data = data;
 
-var filterProducts = function filterProducts() {};
-
-exports.filterProducts = filterProducts;
-
 var renderPageResults = function renderPageResults() {
   var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : data.search.page;
   data.search.page = page;
   var start = (page - 1) * data.search.resultPerPage;
   var end = page * data.search.resultPerPage;
+  return data.search.products.slice(start, end);
 };
 
 exports.renderPageResults = renderPageResults;
@@ -233,8 +230,8 @@ var View = /*#__PURE__*/function () {
     value: function render(data) {
       var _render = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
-      if (!data) return;
       this._data = data;
+      if (!data) return;
 
       var markup = this._generateMarkup(); // this._clear();
 
@@ -545,6 +542,97 @@ var CategoryView = /*#__PURE__*/function (_View) {
 var _default = new CategoryView();
 
 exports.default = _default;
+},{"./View":"Js/views/View.js"}],"Js/views/paginationView.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _View2 = _interopRequireDefault(require("./View"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var PaginationView = /*#__PURE__*/function (_View) {
+  _inherits(PaginationView, _View);
+
+  var _super = _createSuper(PaginationView);
+
+  function PaginationView() {
+    var _this;
+
+    _classCallCheck(this, PaginationView);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "_container", document.querySelector(".pagination"));
+
+    return _this;
+  }
+
+  _createClass(PaginationView, [{
+    key: "addPaginationHandler",
+    value: function addPaginationHandler(handler) {
+      this._container.addEventListener("click", function (e) {
+        var btn = e.target.closest(".pagination__btn");
+        if (!btn) return;
+        var gotoPage = +btn.dataset.goto;
+        console.log(gotoPage);
+        handler(gotoPage);
+      });
+    }
+  }, {
+    key: "_generateMarkup",
+    value: function _generateMarkup() {
+      var currentPage = this._data.page;
+      console.log(currentPage);
+      var numPages = Math.ceil(this._data.products.length / this._data.resultPerPage);
+      var html = "";
+
+      for (var i = 1; i <= numPages; i++) {
+        html += "<button class = \"pagination__btn\" data-goto = ".concat(i, "> ").concat(i, " </button>");
+      }
+
+      if (numPages < 1) return "";
+      return html;
+    }
+  }]);
+
+  return PaginationView;
+}(_View2.default);
+
+var _default = new PaginationView();
+
+exports.default = _default;
 },{"./View":"Js/views/View.js"}],"Js/script.js":[function(require,module,exports) {
 "use strict";
 
@@ -555,6 +643,8 @@ var _productView = _interopRequireDefault(require("./views/productView"));
 var _filterView = _interopRequireDefault(require("./views/filterView"));
 
 var _categoryView = _interopRequireDefault(require("./views/categoryView"));
+
+var _paginationView = _interopRequireDefault(require("./views/paginationView"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -575,7 +665,6 @@ var controlFilter = function controlFilter(data) {
 };
 
 var controlCategoryFilter = function controlCategoryFilter(category) {
-  console.log(category);
   var items;
 
   if (category === "all") {
@@ -615,16 +704,35 @@ var controlCategoryFilter = function controlCategoryFilter(category) {
   }
 };
 
+var controlPagination = function controlPagination(gotoPage) {
+  console.log(model.renderPageResults(gotoPage));
+
+  _productView.default.render(model.renderPageResults(gotoPage));
+
+  _paginationView.default.render(model.data.search);
+};
+
 var init = function init() {
   controlProductView();
+  controlPagination();
+
+  _paginationView.default.render(model.data.search);
 
   _filterView.default.addFilterHandler(controlFilter);
 
   _categoryView.default.addCategoryHandler(controlCategoryFilter);
+
+  _paginationView.default.addPaginationHandler(controlPagination);
 };
 
 init();
-},{"./model":"Js/model.js","./views/productView":"Js/views/productView.js","./views/filterView":"Js/views/filterView.js","./views/categoryView":"Js/views/categoryView.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+var getProducts = function getProducts() {
+  return model.data.search.products.length;
+};
+
+console.log(getProducts());
+},{"./model":"Js/model.js","./views/productView":"Js/views/productView.js","./views/filterView":"Js/views/filterView.js","./views/categoryView":"Js/views/categoryView.js","./views/paginationView":"Js/views/paginationView.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -652,7 +760,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57292" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64944" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

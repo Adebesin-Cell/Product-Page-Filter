@@ -79,11 +79,11 @@ export const data = {
   },
 };
 
-export const filterProducts = function () {};
-
 export const renderPageResults = function (page = data.search.page) {
   data.search.page = page;
   const start = (page - 1) * data.search.resultPerPage;
 
   const end = page * data.search.resultPerPage;
+
+  return data.search.products.slice(start, end);
 };
