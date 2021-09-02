@@ -666,7 +666,6 @@ var PaginationView = /*#__PURE__*/function (_View) {
         var btn = e.target.closest(".pagination__btn");
         if (!btn) return;
         var gotoPage = +btn.dataset.goto;
-        console.log(gotoPage);
         handler(gotoPage);
       });
     }
@@ -674,7 +673,6 @@ var PaginationView = /*#__PURE__*/function (_View) {
     key: "_generateMarkup",
     value: function _generateMarkup() {
       var currentPage = this._data.page;
-      console.log(currentPage);
       var numPages = Math.ceil(this._data.products.length / this._data.resultPerPage);
       var html = "";
 

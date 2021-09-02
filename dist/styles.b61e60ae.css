@@ -30,6 +30,12 @@ body {
   padding-bottom: 40px;
 }
 
+@media only screen and (max-width: 600px) {
+  .pagination {
+    justify-content: center;
+  }
+}
+
 .pagination__btn {
   border: none;
   outline: none;
@@ -75,6 +81,7 @@ body {
 @media only screen and (max-width: 600px) {
   .product__list {
     grid-template-columns: repeat(1, 1fr);
+    margin-bottom: 50px;
   }
 }
 

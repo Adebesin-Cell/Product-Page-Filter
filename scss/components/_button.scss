@@ -2,6 +2,10 @@
   display: flex;
   padding-bottom: 40px;
 
+  @media only screen and (max-width: 600px) {
+    justify-content: center;
+  }
+
   &__btn {
     border: none;
     outline: none;
