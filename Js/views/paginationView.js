@@ -30,7 +30,7 @@ class PaginationView extends View {
       html += `<button class = "pagination__btn" data-goto = ${i}> ${i} </button>`;
     }
 
-    if (numPages < 1) return ``;
+    if (numPages === 1) return ``;
     return html;
   }
 }

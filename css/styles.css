@@ -25,6 +25,34 @@ body {
   padding-top: 50px;
 }
 
+.pagination {
+  display: flex;
+  padding-bottom: 40px;
+}
+
+.pagination__btn {
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  font-size: 15px;
+  cursor: pointer;
+  background: #035add;
+  color: #ffffff;
+}
+
+.pagination__btn:hover {
+  background: #4081e4;
+}
+
+.pagination__btn:not(:last-child) {
+  margin-right: 20px;
+}
+
 .product__list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

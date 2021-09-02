@@ -188,6 +188,66 @@ var data = {
       price: 2500,
       category: "watches",
       img: "img/watch-3.jpg"
+    }, {
+      name: "Black Hoodie",
+      price: 280,
+      category: "clothes",
+      img: "img/hoodie-1.jpg"
+    }, {
+      name: "White Hoodie",
+      price: 300,
+      category: "clothes",
+      img: "img/hoodie-2.jpg"
+    }, {
+      name: "Night Hoodie",
+      price: 450,
+      category: "clothes",
+      img: "img/hoodie-3.jpg"
+    }, {
+      name: "Black Lappy",
+      price: 1500,
+      category: "Computing and Accessories",
+      img: "img/computer-1.jpg"
+    }, {
+      name: "Core Lappy",
+      price: 1500,
+      category: "Computing and Accessories",
+      img: "img/computer-2.jpg"
+    }, {
+      name: "Desktop Computer & Mini Laptop set",
+      price: 15000,
+      category: "Computing and Accessories",
+      img: "img/computer-3.jpg"
+    }, {
+      name: "3 Desktop Set",
+      price: 20000,
+      category: "Computing and Accessories",
+      img: "img/computer-4.jpg"
+    }, {
+      name: "Apple Laptop, HD Desktop computer",
+      price: 30000,
+      category: "Computing and Accessories",
+      img: "img/computer-5.jpg"
+    }, {
+      name: "Shogee Sneakers",
+      price: 4500,
+      category: "Shoes",
+      img: "img/sneaker-1.jpg"
+    }, {
+      name: "Badass Watch",
+      price: 7800,
+      category: "watches",
+      img: "img/watch-1.jpg"
+    }, {
+      name: "Leather Watch",
+      price: 3800,
+      category: "watches",
+      img: "img/watch-2.jpg"
+    }, {
+      name: "Brown Leather Watch",
+      price: 2500,
+      category: "watches",
+      img: "img/watch-3.jpg"
     }]
   }
 };
@@ -622,7 +682,7 @@ var PaginationView = /*#__PURE__*/function (_View) {
         html += "<button class = \"pagination__btn\" data-goto = ".concat(i, "> ").concat(i, " </button>");
       }
 
-      if (numPages < 1) return "";
+      if (numPages === 1) return "";
       return html;
     }
   }]);
@@ -654,6 +714,8 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 var controlProductView = function controlProductView() {
   _productView.default.render(model.data.search.products);
+
+  _paginationView.default.render(model.data.search);
 };
 
 var controlFilter = function controlFilter(data) {
@@ -662,6 +724,8 @@ var controlFilter = function controlFilter(data) {
   });
 
   _productView.default.render(item);
+
+  _paginationView.default.render(item);
 };
 
 var controlCategoryFilter = function controlCategoryFilter(category) {
@@ -705,8 +769,6 @@ var controlCategoryFilter = function controlCategoryFilter(category) {
 };
 
 var controlPagination = function controlPagination(gotoPage) {
-  console.log(model.renderPageResults(gotoPage));
-
   _productView.default.render(model.renderPageResults(gotoPage));
 
   _paginationView.default.render(model.data.search);
@@ -716,8 +778,6 @@ var init = function init() {
   controlProductView();
   controlPagination();
 
-  _paginationView.default.render(model.data.search);
-
   _filterView.default.addFilterHandler(controlFilter);
 
   _categoryView.default.addCategoryHandler(controlCategoryFilter);
@@ -726,12 +786,6 @@ var init = function init() {
 };
 
 init();
-
-var getProducts = function getProducts() {
-  return model.data.search.products.length;
-};
-
-console.log(getProducts());
 },{"./model":"Js/model.js","./views/productView":"Js/views/productView.js","./views/filterView":"Js/views/filterView.js","./views/categoryView":"Js/views/categoryView.js","./views/paginationView":"Js/views/paginationView.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -760,7 +814,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64944" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49780" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

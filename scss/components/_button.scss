@@ -1,0 +1,28 @@
+.pagination {
+  display: flex;
+  padding-bottom: 40px;
+
+  &__btn {
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+    cursor: pointer;
+
+    background: #035add;
+    color: #ffffff;
+
+    &:hover {
+      background: #4081e4;
+    }
+
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+}

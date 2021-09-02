@@ -6,6 +6,7 @@ import paginationView from "./views/paginationView";
 
 const controlProductView = function () {
   ProductView.render(model.data.search.products);
+  paginationView.render(model.data.search);
 };
 
 const controlFilter = function (data) {
@@ -14,6 +15,7 @@ const controlFilter = function (data) {
   });
 
   ProductView.render(item);
+  paginationView.render(item);
 };
 
 const controlCategoryFilter = function (category) {
@@ -51,7 +53,6 @@ const controlCategoryFilter = function (category) {
 };
 
 const controlPagination = function (gotoPage) {
-  console.log(model.renderPageResults(gotoPage));
   ProductView.render(model.renderPageResults(gotoPage));
 
   paginationView.render(model.data.search);
@@ -61,17 +62,9 @@ const init = function () {
   controlProductView();
   controlPagination();
 
-  paginationView.render(model.data.search);
-
   filterView.addFilterHandler(controlFilter);
   categoryView.addCategoryHandler(controlCategoryFilter);
   paginationView.addPaginationHandler(controlPagination);
 };
 
 init();
-
-const getProducts = function () {
-  return model.data.search.products.length;
-};
-
-console.log(getProducts());
